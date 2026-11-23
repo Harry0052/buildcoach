@@ -1,0 +1,49 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set up Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: python -m pip install -e ".[dev]"
+      - name: Lint
+        run: python -m ruff check src tests scripts && python -m ruff format --check src tests scripts
+      - name: Compile
+        run: python -m compileall -q src tests scripts
+      - name: Test
+        run: python -m pytest -q
+      - name: Validate fixtures
+        run: |
+          python -m buildcoach validate src/buildcoach/fixtures/sessions/valid/place-base.json
+          set +e
+          python -m buildcoach validate src/buildcoach/fixtures/sessions/invalid/unknown-step.json
+          code=$?
+          set -e
+          test "$code" -eq 2
+      - name: Demo
+        run: python -m buildcoach demo --output out/demo
+      - name: Upload demo report
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: demo-report
+          path: |
+            out/demo/demo.txt
+            out/demo/metric.json
+            out/demo/seat-top-only/report.txt
+            out/demo/seat-complete/report.txt
+            out/demo/seat-rotated/report.txt
+          if-no-files-found: error

@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+out/
+.ruff_cache/
+.playwright-mcp/

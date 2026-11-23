@@ -1,0 +1,27 @@
+{
+  "access_date": "2026-11-23",
+  "tool": "opencv-python-headless",
+  "version": "4.12.0.88",
+  "opencv_runtime": "4.12.0",
+  "license": "Apache-2.0 for OpenCV; MIT for the Python wrapper scripts",
+  "dictionary": "DICT_4X4_50",
+  "marker_id": 0,
+  "shared_fixture": {
+    "canvas_px": [480, 640],
+    "marker_side_px": 200,
+    "cases": ["visible", "occluded_gray_cover", "rotated_90_clockwise"]
+  },
+  "expected_artifact_for_occluded": {
+    "named_view_request": true,
+    "completions": 0
+  },
+  "observed": {
+    "visible_ids": [0],
+    "occluded_ids": [],
+    "rotated_90cw_ids": [0],
+    "named_angle_request_from_opencv": null,
+    "completions_from_opencv": null
+  },
+  "result": "PROBE_OK",
+  "interpretation": "OpenCV ArUco reports marker absence and keeps the same id under a 90 degree camera roll. It does not emit a named view request or a step completion, so it does not meet the acceptance artifact by itself."
+}

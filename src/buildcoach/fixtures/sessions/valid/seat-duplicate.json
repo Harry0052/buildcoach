@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0.0",
+  "kit_id": "desk-ledge",
+  "step_id": "seat-upright",
+  "images": [
+    {
+      "id": "left-duplicate",
+      "path": "../../images/seat-left-duplicate.png",
+      "claimed_view": "left"
+    }
+  ]
+}

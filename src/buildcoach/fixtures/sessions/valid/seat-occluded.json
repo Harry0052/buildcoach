@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "kit_id": "desk-ledge",
+  "step_id": "seat-upright",
+  "images": [
+    {
+      "id": "top-hidden",
+      "path": "../../images/seat-top-hidden.png",
+      "claimed_view": "top"
+    },
+    {
+      "id": "left-occluded",
+      "path": "../../images/seat-left-occluded.png",
+      "claimed_view": "left"
+    }
+  ]
+}

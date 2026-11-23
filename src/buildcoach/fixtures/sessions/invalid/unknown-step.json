@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0.0",
+  "kit_id": "desk-ledge",
+  "step_id": "weld-frame",
+  "images": [
+    {"id": "top", "path": "../../images/place-base-top.png", "claimed_view": "top"}
+  ]
+}
