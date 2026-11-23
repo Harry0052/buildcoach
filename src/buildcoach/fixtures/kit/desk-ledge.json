@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0.0",
+  "kit_id": "desk-ledge",
+  "kit_version": "1.0.0",
+  "name": "Desk Ledge",
+  "dictionary": "DICT_4X4_50",
+  "summary": "A non-load-bearing three-piece card stand used to practice visible tag checks.",
+  "parts": [
+    {"marker_id": 0, "name": "base", "face": "top", "tag_mm": 40},
+    {"marker_id": 1, "name": "upright", "face": "left", "tag_mm": 40},
+    {"marker_id": 2, "name": "lip", "face": "front", "tag_mm": 30}
+  ],
+  "limits": {
+    "max_bytes": 8000000,
+    "max_pixels": 8000000,
+    "max_edge_px": 4096,
+    "min_images": 1,
+    "max_images": 2,
+    "min_marker_side_px": 48,
+    "max_perspective_deviation": 0.55,
+    "view_parallel_max": 0.08,
+    "view_axis_min": 0.15,
+    "max_abs_center": 2.6
+  },
+  "steps": [
+    {
+      "id": "place-base",
+      "title": "Place the base",
+      "rules": [
+        {
+          "id": "base-identity",
+          "type": "marker_present",
+          "marker_id": 0,
+          "view": "top",
+          "on_missing": {
+            "view": "top",
+            "prompt": "Show the top so the base tag is fully visible."
+          }
+        }
+      ]
+    },
+    {
+      "id": "seat-upright",
+      "title": "Seat the upright",
+      "rules": [
+        {
+          "id": "upright-co-visible",
+          "type": "co_visible",
+          "marker_ids": [0, 1],
+          "reference_marker": 0,
+          "subject_marker": 1,
+          "view": "left",
+          "max_abs_center": 2.6,
+          "on_missing": {
+            "view": "left",
+            "prompt": "Show the left side so tag 1 and the base tag are visible together."
+          }
+        },
+        {
+          "id": "upright-orientation",
+          "type": "relative_x_axis",
+          "reference_marker": 0,
+          "subject_marker": 1,
+          "view": "left",
+          "expected_deg": 0,
+          "tolerance_deg": 12,
+          "on_missing": {
+            "view": "left",
+            "prompt": "Show the left side so tag 1 and the base tag are visible together."
+          }
+        }
+      ]
+    },
+    {
+      "id": "set-lip",
+      "title": "Set the lip",
+      "rules": [
+        {
+          "id": "lip-co-visible",
+          "type": "co_visible",
+          "marker_ids": [0, 2],
+          "reference_marker": 0,
+          "subject_marker": 2,
+          "view": "front",
+          "max_abs_center": 2.6,
+          "on_missing": {
+            "view": "front",
+            "prompt": "Show the front so tag 2 and the base tag are visible together."
+          }
+        },
+        {
+          "id": "lip-placement",
+          "type": "marker_frame_position",
+          "reference_marker": 0,
+          "subject_marker": 2,
+          "view": "front",
+          "expected_center": [0.62, -1.57],
+          "tolerance": [0.4, 0.4],
+          "on_missing": {
+            "view": "front",
+            "prompt": "Show the front so tag 2 and the base tag are visible together."
+          }
+        }
+      ]
+    }
+  ]
+}

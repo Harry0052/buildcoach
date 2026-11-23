@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0.0",
+  "kit_id": "desk-ledge",
+  "step_id": "seat-upright",
+  "images": [
+    {
+      "id": "left-far",
+      "path": "../../images/seat-left-far.png",
+      "claimed_view": "left"
+    }
+  ]
+}
