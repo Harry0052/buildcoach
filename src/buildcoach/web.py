@@ -176,7 +176,7 @@ def _input_corner_table(report: dict) -> str:
     if not rows:
         return ""
     return (
-        "<table id=\"overlay-corners\"><caption>Corners drawn on the overlay</caption>"
+        '<table id="overlay-corners"><caption>Corners drawn on the overlay</caption>'
         "<thead><tr><th>Image</th><th>Tag</th><th>Corners px</th></tr></thead><tbody>"
         + "".join(rows)
         + "</tbody></table>"
