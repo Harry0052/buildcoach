@@ -62,9 +62,14 @@
 
 ## P07 — Publish and verify on GitHub
 
-- **Phase and status:** P07 pending hosted CI
-- **Files changed:** none yet beyond the release candidate
-- **Commands and results:** Not run. The destination authorized by the owner is `https://github.com/Harry0052/buildcoach`, public, MIT.
-- **Artifact paths:** none
-- **Open issues:** Waiting for GitHub Actions on the pull request head.
-- **Next phase:** finish P07 after CI
+- **Phase and status:** P07 PASS
+- **Files changed:** `docs/grokbot-progress.md` after the tested commit. The tag stays on the commit CI verified.
+- **Commands and results:**
+  - Destination checked: `https://github.com/Harry0052/buildcoach` is public, default branch `main`, license SPDX `MIT`. The push remote is that repository.
+  - Pull request: https://github.com/Harry0052/buildcoach/pull/1
+  - First CI run on `9d8503a` failed at ruff format for `web.py`: https://github.com/Harry0052/buildcoach/actions/runs/45116317686
+  - Format fix `88492047703bf84f671575d741aed58b8a7298cb` passed CI: https://github.com/Harry0052/buildcoach/actions/runs/45116375813 (job https://github.com/Harry0052/buildcoach/actions/runs/45116375813/job/137500065263). Lint, compile, test, validate, demo, and artifact upload all succeeded.
+  - Tag `v0.1.0` points at `88492047703bf84f671575d741aed58b8a7298cb`. A fresh clone of `https://github.com/Harry0052/buildcoach` at `v0.1.0` resolved to that SHA. Installing that tree into an empty prefix and running `python -m buildcoach demo` reported occluded completions 0, contradictory completions 0, clear correct completions 3 of 3. The top-only report asks for the left view and is not complete. The complete report is complete.
+- **Artifact paths:** tag `v0.1.0`. Wheel is built from the tag with `python -m build --wheel` and is not committed. A GitHub Release object was not opened.
+- **Open issues:** Phone-camera transfer is still unvalidated. The owner merges the pull request.
+- **Next phase:** none. The owner merges.
